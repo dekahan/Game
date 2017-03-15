@@ -14,7 +14,7 @@ public class MyPanel extends JPanel{
 
         theBalls = new ArrayList<Ball>();
         for (int i = 0; i < 8; i++)
-        theBalls.add(new SmallBalls(300, 300, 0));
+        theBalls.add(new SmallBalls(300, 300, 4));
 
         timer = new Timer(20, new ActionListener(){
             @Override
