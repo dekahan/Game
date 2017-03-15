@@ -13,7 +13,7 @@ public class MyPanel extends JPanel{
         setSize(w0,h0);
 
         theBalls = new ArrayList<Ball>();
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 8; i++)
         theBalls.add(new SmallBalls(300, 300, 0));
 
         timer = new Timer(20, new ActionListener(){
