@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class SmallBalls {
+public class SmallBalls extends Ball{
 
 
 }
