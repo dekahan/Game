@@ -31,7 +31,7 @@ public class MyPanel extends JPanel{
     public void paint(Graphics g){
         super.paint(g);  //gets rid of that trail effect.
         Graphics2D g2 = (Graphics2D)g;
-
+        g2.fillRect(0, 0, getWidth(), getHeight());
         for(Ball b: theBalls)
             b.draw(g2);
     }
@@ -43,13 +43,13 @@ public class MyPanel extends JPanel{
         int x= getWidth()/2-25;
         int y= getHeight()/2-25;
         int vx = (int) (Math.random() * 21 - 10);
-        if(vx == 0){
-            vx = (int) (Math.random() * 21 - 10);
-        }
+//        if(vx == 0){
+//            vx = (int) (Math.random() * 21 - 10);
+//        }
         int vy = (int) (Math.random() * 21 - 10);
-        if(vy == 0){
-            vy = (int) (Math.random() * 21 - 10);
-        }
+//        if(vy == 0){
+//            vy = (int) (Math.random() * 21 - 10);
+//        }
         Ball temp = new SmallBalls(x, y, vx, vy);
         return temp;
     }
