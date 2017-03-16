@@ -46,7 +46,6 @@ public class MyPanel extends JPanel{
 
 //            theBalls.add(makeRandomBall());
             theBalls.add(new SmallBalls(375, 375, (int)(Math.random()*15), (int)(Math.random()*15)));
-
         }
         timer = new Timer(20, new ActionListener(){
             @Override
