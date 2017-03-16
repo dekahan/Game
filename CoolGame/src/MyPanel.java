@@ -13,9 +13,9 @@ public class MyPanel extends JPanel{
         setSize(w0,h0);
 
         theBalls = new ArrayList<Ball>();
-        for (int i = 0; i < 8; i++) {
-            theBalls.add(makeRandomBall());
-//            theBalls.add(new SmallBalls(300, 300, 4));
+        for (int i = 0; i < 10; i++) {
+//            theBalls.add(makeRandomBall());
+            theBalls.add(new SmallBalls(375, 375, (int)(Math.random()*15), (int)(Math.random()*15)));
         }
         timer = new Timer(20, new ActionListener(){
             @Override
