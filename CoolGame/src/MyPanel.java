@@ -13,9 +13,10 @@ public class MyPanel extends JPanel{
         setSize(w0,h0);
 
         theBalls = new ArrayList<Ball>();
-        for (int i = 0; i < 8; i++)
-        theBalls.add(new SmallBalls(300, 301, 4));
-
+        for (int i = 0; i < 8; i++) {
+            theBalls.add(makeRandomBall());
+//            theBalls.add(new SmallBalls(300, 300, 4));
+        }
         timer = new Timer(20, new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -42,8 +43,14 @@ public class MyPanel extends JPanel{
         int x= getWidth()/2-25;
         int y= getHeight()/2-25;
         int vx = (int) (Math.random() * 21 - 10);
+        if(vx == 0){
+            vx = (int) (Math.random() * 21 - 10);
+        }
         int vy = (int) (Math.random() * 21 - 10);
-        Ball temp = new Ball(x, y, vx, vy);
+        if(vy == 0){
+            vy = (int) (Math.random() * 21 - 10);
+        }
+        Ball temp = new SmallBalls(x, y, vx, vy);
         return temp;
     }
 }

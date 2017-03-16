@@ -5,7 +5,7 @@ public class Main {
 
         int w = 750;
         int h = 750;
-        JFrame window = new JFrame("Aniimation!");
+        JFrame window = new JFrame("Chain Rxn!");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setBounds(500, 0, w, h); //(x, y, w, h)
 
