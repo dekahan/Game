@@ -17,6 +17,10 @@ public class MyPanel extends JPanel{
         this.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
+                int x = mouseEvent.getX();
+                int y = mouseEvent.getY();
+                theBalls.add(new NewBall(x, y));
+
 
             }
 
@@ -50,6 +54,8 @@ public class MyPanel extends JPanel{
         timer = new Timer(20, new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
+
+
 
                 for(Ball b: theBalls)
                     b.move(getWidth(), getHeight());

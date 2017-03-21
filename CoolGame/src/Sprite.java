@@ -198,7 +198,9 @@ public class Sprite {
     /**
      Returns true if this Sprite intersects the other Sprite
      */
-
+    public boolean intersects(Sprite other){
+        return getBoundingRectangle().intersects(other.getBoundingRectangle());
+    }
 
     /**
      Changes the speed of this Sprite
