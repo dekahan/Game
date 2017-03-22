@@ -1,3 +1,5 @@
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,10 +11,12 @@ import java.util.ArrayList;
 public class MyPanel extends JPanel{
 
     private Timer timer;
+    private Ball nBall;
     private ArrayList<Ball> theBalls;
 
     public MyPanel(int w0, int h0){
-        setSize(w0,h0);
+        setSize(w0,h0);;
+
 
         this.addMouseListener(new MouseListener() {
             @Override
@@ -20,6 +24,7 @@ public class MyPanel extends JPanel{
                 int x = mouseEvent.getX();
                 int y = mouseEvent.getY();
                 theBalls.add(new NewBall(x, y));
+//                nBall = new NewBall(x,y);
 
 
             }
@@ -55,12 +60,24 @@ public class MyPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                if (SmallBalls.intersects)
 
 
+//                nBall.move(getWidth(), getHeight());
 
-                for(Ball b: theBalls)
+                for (int i = 0; i < theBalls.size(); i++) {
+                    Ball b = theBalls.get(i);
                     b.move(getWidth(), getHeight());
+                    nBall.move(getWidth(), getHeight());
+                    if (nBall.intersects(b)){
+                        b.setDiameter(0);
+                        NewBall replacement = new NewBall(b.getX(), b.getY());
+                        theBalls.set(i, replacement);
+                    }
+
+
+
+
+                }
                 repaint();
             }
         });
