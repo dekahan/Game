@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Ball {
+public class Ball  {
 
     private int x, y, vx, vy, diameter;
     private Color color;
@@ -23,6 +23,7 @@ public class Ball {
         diameter = diam;
         randomColor();
     }
+
 
     public void randomColor(){
         int r = (int)(Math.random()*256); //[0,255]
@@ -107,4 +108,10 @@ public class Ball {
     public void setDiameter(int diameter) {
         this.diameter = diameter;
     }
+
+    public boolean intersects(Ball other){
+
+
+    }
+
 }
