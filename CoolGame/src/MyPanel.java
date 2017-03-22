@@ -23,8 +23,8 @@ public class MyPanel extends JPanel{
             public void mouseClicked(MouseEvent mouseEvent) {
                 int x = mouseEvent.getX();
                 int y = mouseEvent.getY();
-                theBalls.add(new NewBall(x, y));
-//                nBall = new NewBall(x,y);
+//                theBalls.add(new NewBall(x, y));
+                nBall = new NewBall(x,y);
 
 
             }
@@ -61,23 +61,22 @@ public class MyPanel extends JPanel{
             public void actionPerformed(ActionEvent e) {
 
 
-
-//                nBall.move(getWidth(), getHeight());
-
+                if(nBall != null) {
+                    nBall.move(getWidth(), getHeight());
+                }
                 for (int i = 0; i < theBalls.size(); i++) {
                     Ball b = theBalls.get(i);
                     b.move(getWidth(), getHeight());
-                    nBall.move(getWidth(), getHeight());
-                    if (nBall.intersects(b)){
+                    if (nBall != null && nBall.intersects(b)) {
                         b.setDiameter(0);
                         NewBall replacement = new NewBall(b.getX(), b.getY());
                         theBalls.set(i, replacement);
                     }
 
 
-
-
                 }
+
+
                 repaint();
             }
         });
@@ -89,6 +88,7 @@ public class MyPanel extends JPanel{
         g2.fillRect(0, 0, getWidth(), getHeight());
         for(Ball b: theBalls)
             b.draw(g2);
+        nBall.draw(g2);
     }
 
     public Ball makeRandomBall(){
