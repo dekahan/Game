@@ -13,9 +13,12 @@ public class MyPanel extends JPanel{
     private Timer timer;
     private Ball nBall;
     private ArrayList<Ball> theBalls;
+    private ArrayList<Ball> newBalls;
 
     public MyPanel(int w0, int h0){
         setSize(w0,h0);;
+
+        newBalls = new ArrayList<Ball>();
 
 
         this.addMouseListener(new MouseListener() {
@@ -23,8 +26,8 @@ public class MyPanel extends JPanel{
             public void mouseClicked(MouseEvent mouseEvent) {
                 int x = mouseEvent.getX();
                 int y = mouseEvent.getY();
-//                theBalls.add(new NewBall(x, y));
-                nBall = new NewBall(x,y);
+                newBalls.add(new NewBall(x, y));
+//                nBall = new NewBall(x,y);
 
 
             }
@@ -61,17 +64,25 @@ public class MyPanel extends JPanel{
             public void actionPerformed(ActionEvent e) {
 
 
-                if(nBall != null) {
-                    nBall.move(getWidth(), getHeight());
-                }
                 for (int i = 0; i < theBalls.size(); i++) {
                     Ball b = theBalls.get(i);
                     b.move(getWidth(), getHeight());
-                    if (nBall != null && nBall.intersects(b)) {
-                        b.setDiameter(0);
-                        NewBall replacement = new NewBall(b.getX(), b.getY());
-                        theBalls.set(i, replacement);
+                    for (int j = 0; j < newBalls.size() ; j++) {
+                        Ball n = newBalls.get(j);
+                        if(newBalls != null) {
+                            n.move(getWidth(), getHeight());
+                        }
+                        if (n != null && n.intersects(b) && !(b instanceof NewBall)) {
+                            b.setDiameter(0);
+                            NewBall replacement = new NewBall(b.getX(), b.getY());
+
+                            newBalls.add(replacement);
+                            theBalls.remove(i);
+
+                        }
+
                     }
+
 
 
                 }
@@ -86,9 +97,11 @@ public class MyPanel extends JPanel{
         super.paint(g);  //gets rid of that trail effect.
         Graphics2D g2 = (Graphics2D)g;
         g2.fillRect(0, 0, getWidth(), getHeight());
+
         for(Ball b: theBalls)
             b.draw(g2);
         nBall.draw(g2);
+
     }
 
     public Ball makeRandomBall(){
