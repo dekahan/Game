@@ -1,6 +1,7 @@
 import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicBorders;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -78,6 +79,14 @@ public class MyPanel extends JPanel{
 
                             newBalls.add(replacement);
                             theBalls.remove(i);
+                            int m = (int)(Math.random()*750);
+                            if (m != b.getX())
+                                m = (int)(Math.random()*750);
+                            int p = (int)(Math.random()*750);
+                            if (p != b.getX())
+                                p = (int)(Math.random()*750);
+
+                            theBalls.add(new SmallBalls(m, p, (int)(Math.random()*15), (int)(Math.random()*15)));
 
                         }
 
@@ -100,7 +109,8 @@ public class MyPanel extends JPanel{
 
         for(Ball b: theBalls)
             b.draw(g2);
-        nBall.draw(g2);
+        for(Ball n: newBalls)
+            n.draw(g2);
 
     }
 
