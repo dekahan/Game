@@ -105,14 +105,17 @@ public class Ball  {
     public void setY(int y) {
         this.y = y;
     }
+    public Point getPoint(){
+        return new Point(x+getDiameter()/2, y+getDiameter()/2);
+    }
     public void setDiameter(int diameter) {
         this.diameter = diameter;
     }
 
     public boolean intersects(Ball other){
-
-        int d = ((getX() + getDiameter()/2) - (other.getX() + other.getDiameter()))*((getX() + getDiameter()/2) - (other.getX() + other.getDiameter())) + ((getY() + getDiameter()/2) - (other.getY() + other.getDiameter()))*((getY() + getDiameter()/2) - (other.getY() + other.getDiameter()));
-        if (d < (diameter/2 + other.getDiameter()/2)*(diameter/2 + other.getDiameter()/2))
+        double d = getPoint().distance(other.getPoint());
+//        int d = ((getX() + getDiameter()/2) - (other.getX() + other.getDiameter()))*((getX() + getDiameter()/2) - (other.getX() + other.getDiameter())) + ((getY() + getDiameter()/2) - (other.getY() + other.getDiameter()))*((getY() + getDiameter()/2) - (other.getY() + other.getDiameter()));
+        if (d < (diameter/2 + other.getDiameter()/2))
             return true;
         else
             return false;

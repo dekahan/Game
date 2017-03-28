@@ -4,19 +4,18 @@
 public class NewBall extends Ball {
 
     private int frameCount;
-    private int diam;
 
 
     public NewBall(int x, int y) {
         super(x, y, 0, 0);
-        diam = 1;
+        int diam = 1;
         setDiameter(diam);
     }
 
     @Override
     public void move(int w, int h) {
         //super.move(w, h);
-        setDiameter(diam += 1);
+        setDiameter(getDiameter() + 1);
         frameCount ++;
         if (frameCount > 300)
             setDiameter(0);

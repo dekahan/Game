@@ -60,19 +60,22 @@ public class MyPanel extends JPanel{
 //            theBalls.add(makeRandomBall());
             theBalls.add(new SmallBalls(375, 375, (int)(Math.random()*15), (int)(Math.random()*15)));
         }
-        timer = new Timer(20, new ActionListener(){
+        timer = new Timer(40, new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                for (int j = 0; j < newBalls.size() ; j++) {
+                    Ball n = newBalls.get(j);
+                    if (newBalls != null) {
+                        n.move(getWidth(), getHeight());
+                    }
+                }
 
                 for (int i = 0; i < theBalls.size(); i++) {
                     Ball b = theBalls.get(i);
                     b.move(getWidth(), getHeight());
                     for (int j = 0; j < newBalls.size() ; j++) {
                         Ball n = newBalls.get(j);
-                        if(newBalls != null) {
-                            n.move(getWidth(), getHeight());
-                        }
+
                         if (n != null && n.intersects(b) && !(b instanceof NewBall)) {
                             b.setDiameter(0);
                             NewBall replacement = new NewBall(b.getX(), b.getY());

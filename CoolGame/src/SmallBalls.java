@@ -10,7 +10,7 @@ public class SmallBalls extends Ball{
         if(vx == 0 || vy == 0){
             novelocity = true;
         }
-        if(novelocity = true){
+        if(novelocity == true){
 
         }
     }
