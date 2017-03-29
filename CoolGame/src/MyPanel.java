@@ -92,7 +92,7 @@ public class MyPanel extends JPanel{
 
                         if (n != null && n.intersects(b) && !(b instanceof NewBall)) {
                             b.setDiameter(0);
-                            NewBall replacement = new NewBall(b.getX(), b.getY());
+                            NewBall replacement = new NewBall((int)b.getX(), (int)b.getY());
 
                             newBalls.add(replacement);
                             theBalls.remove(i);
