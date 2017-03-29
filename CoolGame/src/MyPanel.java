@@ -64,12 +64,12 @@ public class MyPanel extends JPanel{
         });
 
         theBalls = new ArrayList<Ball>();
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 12; i++) {
 
 //            theBalls.add(makeRandomBall());
             theBalls.add(new SmallBalls(375, 375));
         }
-        timer = new Timer(50, new ActionListener(){
+        timer = new Timer(30, new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (int j = 0; j < newBalls.size() ; j++) {
