@@ -2,10 +2,11 @@ import java.awt.*;
 
 public class Ball  {
 
-    private int x, y, vx, vy, diameter;
+    private int vx, vy, diameter;
+    private double x, y;
     private Color color;
 
-    public Ball(int x, int y, int vx, int vy){
+    public Ball(double x, double y, int vx, int vy){
         this.x = x;
         this.y = y;
         this.vx = vx;
@@ -34,7 +35,7 @@ public class Ball  {
 
     public void draw(Graphics2D g2){
         g2.setColor(color);
-        g2.fillOval(x, y, diameter, diameter);
+        g2.fillOval((int)x, (int)y, diameter, diameter);
     }
 
     public void move(int w, int h){
@@ -63,11 +64,11 @@ public class Ball  {
         y += vy;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
@@ -98,15 +99,15 @@ public class Ball  {
         return vy;
     }
 
-    public void setX(int x) {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public void setY(int y) {
+    public void setY(double y) {
         this.y = y;
     }
     public Point getPoint(){
-        return new Point(x+getDiameter()/2, y+getDiameter()/2);
+        return new Point((int)(x+getDiameter()/2), (int)( y+getDiameter()/2));
     }
     public void setDiameter(int diameter) {
         this.diameter = diameter;

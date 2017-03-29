@@ -16,9 +16,15 @@ public class NewBall extends Ball {
     public void move(int w, int h) {
         //super.move(w, h);
         setDiameter(getDiameter() + 1);
+        setX(getX() - 0.5);
+        setY(getY() - 0.5);
         frameCount ++;
-        if (frameCount > 300)
+        if (frameCount > 125) {
             setDiameter(0);
+        }
+
+
+
 
 
     }

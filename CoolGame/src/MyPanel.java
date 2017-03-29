@@ -22,12 +22,21 @@ public class MyPanel extends JPanel{
         newBalls = new ArrayList<Ball>();
 
 
+
+
         this.addMouseListener(new MouseListener() {
+            int s = 0;
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
+                s++;
+
+               if (s <= 1){
                 int x = mouseEvent.getX();
                 int y = mouseEvent.getY();
                 newBalls.add(new NewBall(x, y));
+                }
+
+
 //                nBall = new NewBall(x,y);
 
 
@@ -55,20 +64,25 @@ public class MyPanel extends JPanel{
         });
 
         theBalls = new ArrayList<Ball>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 8; i++) {
 
 //            theBalls.add(makeRandomBall());
-            theBalls.add(new SmallBalls(375, 375, (int)(Math.random()*15), (int)(Math.random()*15)));
+            theBalls.add(new SmallBalls(375, 375));
         }
-        timer = new Timer(40, new ActionListener(){
+        timer = new Timer(50, new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (int j = 0; j < newBalls.size() ; j++) {
                     Ball n = newBalls.get(j);
                     if (newBalls != null) {
                         n.move(getWidth(), getHeight());
+                        if (n.getDiameter() == 0) {
+                             newBalls.remove(n);
+                            j--;
+                        }
                     }
                 }
+                int c = 0;
 
                 for (int i = 0; i < theBalls.size(); i++) {
                     Ball b = theBalls.get(i);
@@ -82,6 +96,7 @@ public class MyPanel extends JPanel{
 
                             newBalls.add(replacement);
                             theBalls.remove(i);
+                            c++;
                             int m = (int)(Math.random()*750);
                             if (m != b.getX())
                                 m = (int)(Math.random()*750);
@@ -89,7 +104,7 @@ public class MyPanel extends JPanel{
                             if (p != b.getX())
                                 p = (int)(Math.random()*750);
 
-                            theBalls.add(new SmallBalls(m, p, (int)(Math.random()*15), (int)(Math.random()*15)));
+                            theBalls.add(new SmallBalls(m, p));
 
                         }
 
@@ -131,7 +146,7 @@ public class MyPanel extends JPanel{
 //        if(vy == 0){
 //            vy = (int) (Math.random() * 21 - 10);
 //        }
-        Ball temp = new SmallBalls(x, y, vx, vy);
+        Ball temp = new SmallBalls(x, y);
         return temp;
     }
 }

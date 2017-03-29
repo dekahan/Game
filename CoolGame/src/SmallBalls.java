@@ -4,15 +4,19 @@ import java.util.ArrayList;
 public class SmallBalls extends Ball{
     public boolean novelocity;
 
-    public SmallBalls(int x, int y, int vx, int vy){
-        super(x, y, (int)(Math.random()*15-10), (int)(Math.random()*15-10));
+    public SmallBalls(int x, int y){
+        super(x, y, (int)(Math.random()*30-10), (int)(Math.random()*30-10));
         setDiameter(10);
-        if(vx == 0 || vy == 0){
+        if(getVx() == 0 || getVy() == 0){
             novelocity = true;
         }
         if(novelocity == true){
+            setVx((int)(Math.random()*30-10));
+            setVy((int)(Math.random()*30-10));
 
         }
+        else
+            novelocity = false;
     }
 
 }
