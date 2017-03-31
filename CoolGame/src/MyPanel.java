@@ -12,28 +12,50 @@ import java.util.ArrayList;
 public class MyPanel extends JPanel{
 
     private Timer timer;
-    private Ball nBall;
     private ArrayList<Ball> theBalls;
     private ArrayList<Ball> newBalls;
+    private int level;
+    private int reqhits;
+    private boolean levelup;
+    private int numhits;
+    private int s;
 
-    public MyPanel(int w0, int h0){
-        setSize(w0,h0);;
+    public MyPanel(int w0, int h0) {
+        setSize(w0, h0);
+        ;
+        level = 1;
+        reqhits = 3;
+        levelup = false;
+        numhits = 0;
+        s = 0;
+
 
         newBalls = new ArrayList<Ball>();
 
 
-
-
         this.addMouseListener(new MouseListener() {
-            int s = 0;
+
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 s++;
 
-               if (s <= 1){
-                int x = mouseEvent.getX();
-                int y = mouseEvent.getY();
-                newBalls.add(new NewBall(x, y));
+                if (s <= 1) {
+                    int x = mouseEvent.getX();
+                    int y = mouseEvent.getY();
+                    newBalls.add(new NewBall(x, y));
+                }
+                if (levelup = true && mouseEvent.getX() >415 && mouseEvent.getX()< 445 && mouseEvent.getY() > 420 && mouseEvent.getY() < 435 ){
+                   timer.restart();
+                    level++;
+                    numhits = 0;
+                    reqhits += level*2;
+                    for (int i = 0; i < newBalls.size() ; i++) {
+                        newBalls.remove(i);
+
+                    }
+                    s = 0;
+
+
                 }
 
 
@@ -64,59 +86,78 @@ public class MyPanel extends JPanel{
         });
 
         theBalls = new ArrayList<Ball>();
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 10; i++) {
 
 //            theBalls.add(makeRandomBall());
             theBalls.add(new SmallBalls(375, 375));
         }
+
         timer = new Timer(30, new ActionListener(){
+
+
             @Override
+
             public void actionPerformed(ActionEvent e) {
-                for (int j = 0; j < newBalls.size() ; j++) {
+                for (int j = 0; j < newBalls.size(); j++) {
                     Ball n = newBalls.get(j);
                     if (newBalls != null) {
                         n.move(getWidth(), getHeight());
                         if (n.getDiameter() == 0) {
-                             newBalls.remove(n);
+                            newBalls.remove(n);
                             j--;
                         }
                     }
                 }
-                int c = 0;
 
                 for (int i = 0; i < theBalls.size(); i++) {
                     Ball b = theBalls.get(i);
                     b.move(getWidth(), getHeight());
-                    for (int j = 0; j < newBalls.size() ; j++) {
+                    for (int j = 0; j < newBalls.size(); j++) {
                         Ball n = newBalls.get(j);
 
                         if (n != null && n.intersects(b) && !(b instanceof NewBall)) {
                             b.setDiameter(0);
-                            NewBall replacement = new NewBall((int)b.getX(), (int)b.getY());
+                            NewBall replacement = new NewBall((int) b.getX(), (int) b.getY());
 
                             newBalls.add(replacement);
                             theBalls.remove(i);
-                            c++;
-                            int m = (int)(Math.random()*750);
+                            numhits++;
+                            int m = (int) (Math.random() * 750);
                             if (m != b.getX())
-                                m = (int)(Math.random()*750);
-                            int p = (int)(Math.random()*750);
+                                m = (int) (Math.random() * 750);
+                            int p = (int) (Math.random() * 750);
                             if (p != b.getX())
-                                p = (int)(Math.random()*750);
+                                p = (int) (Math.random() * 750);
 
                             theBalls.add(new SmallBalls(m, p));
+                            if (numhits == reqhits) {
+                                levelup = true;
+
+                            }
 
                         }
+
 
                     }
 
 
-
+                    repaint();
                 }
-
-
-                repaint();
+//                if (levelup = true){
+//                    level++;
+//                    numhits = 0;
+//                    reqhits += level*2;
+//                    for (int i = 0; i < newBalls.size() ; i++) {
+//                        newBalls.remove(i);
+//
+//                    }
+//                    s = 0;
+//
+//
+//
+//                }
             }
+
         });
         timer.start();
     }
@@ -129,6 +170,14 @@ public class MyPanel extends JPanel{
             b.draw(g2);
         for(Ball n: newBalls)
             n.draw(g2);
+        g2.drawString("Level: " + level, 10, 10);
+
+        if (levelup = true){
+            timer.stop();
+            g2.fillRect(415,420, 30, 15);
+            g2.drawString("Next Level", 420, 425);
+
+        }
 
     }
 
