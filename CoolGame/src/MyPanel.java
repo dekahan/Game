@@ -19,14 +19,12 @@ public class MyPanel extends JPanel{
     private boolean levelup;
     private int numhits;
     private int s;
-    private boolean gameover;
 
     public MyPanel(int w0, int h0) {
         setSize(w0, h0);
         level = 1;
         reqhits = 3;
         levelup = false;
-        gameover = false;
         numhits = 0;
         s = 0;
 
@@ -60,23 +58,10 @@ public class MyPanel extends JPanel{
 
 
                 }
-                if(s >= 2 && newBalls.size() == 0) {
-                    gameover = true;
-                }
-                if (gameover == true && mouseEvent.getX() >400 && mouseEvent.getX()< 500 && mouseEvent.getY() > 405 && mouseEvent.getY() < 455 ){
-                    timer.start();
-                    level = 0;
-                    numhits = 0;
-                    reqhits = 3;
-                    for (int i = 0; i < newBalls.size() ; i++) {
-                        newBalls.remove(i);
-                        i--;
-                    }
-                    for (int i = 0; i < level-1; i++) {
-                        newBalls.remove(i);
 
-                    }
-                }
+
+//                nBall = new NewBall(x,y);
+
 
             }
 
@@ -151,7 +136,6 @@ public class MyPanel extends JPanel{
                                 theBalls.add(new SmallBalls((int)(Math.random()*850), (int)(Math.random()*850)));
                             }
 
-
                         }
 
 
@@ -184,30 +168,20 @@ public class MyPanel extends JPanel{
         super.paint(g);  //gets rid of that trail effect.
         Graphics2D g2 = (Graphics2D)g;
         g2.fillRect(0, 0, getWidth(), getHeight());
-        g2.setStroke(new BasicStroke(3));
 
         for(Ball b: theBalls)
             b.draw(g2);
         for(Ball n: newBalls)
             n.draw(g2);
-        g2.setColor(Color.RED);
-        g2.drawString("Level: " + level, 10, 12);
+        g2.setColor(Color.BLUE);
+
+        g2.drawString("Level: " + level, 10, 20);
+        g2.drawString("Target Hits: " + reqhits, 750, 790);
+        g2.drawString("Hits left: " +  (reqhits - numhits), 750, 775);
 
         if (levelup == true){
-            g2.setColor(Color.RED);
             g2.drawRect(400, 405, 100, 50);
             g2.drawString("Next Level", 415, 435);
-
-            if(gameover == true){
-                g2.setColor(Color.RED);
-                g2.drawRect(400, 405, 100, 50);
-                g2.drawString("Press to Restart", 390, 435);
-
-                g2.drawString("GAME OVER", 415, 435);
-            }
-
-
-            g2.setStroke(new BasicStroke(1));
 
         }
 
