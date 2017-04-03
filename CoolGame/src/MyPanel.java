@@ -22,7 +22,6 @@ public class MyPanel extends JPanel{
 
     public MyPanel(int w0, int h0) {
         setSize(w0, h0);
-        ;
         level = 1;
         reqhits = 3;
         levelup = false;
@@ -44,16 +43,18 @@ public class MyPanel extends JPanel{
                     int y = mouseEvent.getY();
                     newBalls.add(new NewBall(x, y));
                 }
-                if (levelup = true && mouseEvent.getX() >415 && mouseEvent.getX()< 445 && mouseEvent.getY() > 420 && mouseEvent.getY() < 435 ){
-                   timer.restart();
+                if (levelup == true && mouseEvent.getX() >400 && mouseEvent.getX()< 500 && mouseEvent.getY() > 405 && mouseEvent.getY() < 455 ){
+                   timer.start();
                     level++;
                     numhits = 0;
                     reqhits += level*2;
                     for (int i = 0; i < newBalls.size() ; i++) {
                         newBalls.remove(i);
-
+                        i--;
                     }
                     s = 0;
+
+                    levelup = false;
 
 
                 }
@@ -86,10 +87,10 @@ public class MyPanel extends JPanel{
         });
 
         theBalls = new ArrayList<Ball>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 12; i++) {
 
 //            theBalls.add(makeRandomBall());
-            theBalls.add(new SmallBalls(375, 375));
+            theBalls.add(new SmallBalls((int)(Math.random()*850), (int)(Math.random()*850)));
         }
 
         timer = new Timer(30, new ActionListener(){
@@ -132,13 +133,15 @@ public class MyPanel extends JPanel{
                             theBalls.add(new SmallBalls(m, p));
                             if (numhits == reqhits) {
                                 levelup = true;
-
+                                theBalls.add(new SmallBalls((int)(Math.random()*850), (int)(Math.random()*850)));
                             }
 
                         }
 
 
                     }
+                    if(levelup)
+                        timer.stop();
 
 
                     repaint();
@@ -172,10 +175,10 @@ public class MyPanel extends JPanel{
             n.draw(g2);
         g2.drawString("Level: " + level, 10, 10);
 
-        if (levelup = true){
-            timer.stop();
-            g2.fillRect(415,420, 30, 15);
-            g2.drawString("Next Level", 420, 425);
+        if (levelup == true){
+            g2.setColor(Color.RED);
+            g2.drawRect(400, 405, 100, 50);
+            g2.drawString("Next Level", 415, 435);
 
         }
 

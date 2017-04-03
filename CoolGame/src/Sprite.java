@@ -5,9 +5,6 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-/**
- * Created by michael_hopps on 2/13/17.
- */
 public class Sprite {
 
     private static int nextID = 1;
@@ -176,9 +173,7 @@ public class Sprite {
         if (!(o instanceof Sprite)) //if not a Sprite...false
             return false;
         Sprite other = (Sprite) o;  //cast Object to Sprite variable
-        if (other.getID() == getID())    //if ID's match...
-            return true;
-        return false;
+        return other.getID() == getID();
     }
 
     /**
