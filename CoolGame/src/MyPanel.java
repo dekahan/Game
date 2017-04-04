@@ -45,7 +45,7 @@ public class MyPanel extends JPanel{
                     int y = mouseEvent.getY();
                     newBalls.add(new NewBall(x, y));
                 }
-                if (levelup == true && mouseEvent.getX() > 375 && mouseEvent.getX()< 475 && mouseEvent.getY() > 405 && mouseEvent.getY() < 455 ){
+                if (levelup == true && mouseEvent.getX() > 365 && mouseEvent.getX()< 465 && mouseEvent.getY() > 375 && mouseEvent.getY() < 425 ){
                    timer.start();
                     level++;
                     numhits = 0;
@@ -60,7 +60,7 @@ public class MyPanel extends JPanel{
 
 
                 }
-                if (gameover == true && mouseEvent.getX() >375 && mouseEvent.getX()< 475 && mouseEvent.getY() > 405 && mouseEvent.getY() < 455 ){
+                if (gameover == true && mouseEvent.getX() >365 && mouseEvent.getX()< 465 && mouseEvent.getY() > 375 && mouseEvent.getY() < 425 ){
                     timer.start();
                     level = 0;
                     numhits = 0;
@@ -98,7 +98,7 @@ public class MyPanel extends JPanel{
         });
 
         theBalls = new ArrayList<Ball>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 14; i++) {
 
 //            theBalls.add(makeRandomBall());
             theBalls.add(new SmallBalls((int)(Math.random()*800), (int)(Math.random()*800)));
@@ -144,7 +144,7 @@ public class MyPanel extends JPanel{
                             theBalls.add(new SmallBalls(m, p));
                             if (numhits == reqhits) {
                                 levelup = true;
-                                theBalls.add(new SmallBalls((int)(Math.random()*800), (int)(Math.random()*800)));
+//                                theBalls.add(new SmallBalls((int)(Math.random()*800), (int)(Math.random()*800)));
                             }
 
 
@@ -164,73 +164,42 @@ public class MyPanel extends JPanel{
 
                     repaint();
                 }
-//                if (levelup = true){
-//                    level++;
-//                    numhits = 0;
-//                    reqhits += level*2;
-//                    for (int i = 0; i < newBalls.size() ; i++) {
-//                        newBalls.remove(i);
 //
-//                    }
-//                    s = 0;
-//
-//
-//
-//                }
             }
 
         });
         timer.start();
     }
-    public void paint(Graphics g){
+    public void paint(Graphics g) {
         super.paint(g);  //gets rid of that trail effect.
-        Graphics2D g2 = (Graphics2D)g;
+        Graphics2D g2 = (Graphics2D) g;
         g2.fillRect(0, 0, getWidth(), getHeight());
         g2.setStroke(new BasicStroke(3));
 
-        for(Ball b: theBalls)
+        for (Ball b : theBalls)
             b.draw(g2);
-        for(Ball n: newBalls)
+        for (Ball n : newBalls)
             n.draw(g2);
         g2.setColor(Color.RED);
         g2.drawString("Level: " + level, 10, 20);
         g2.drawString("Target Hits: " + reqhits, 700, 765);
-        g2.drawString("Hits left: " +  (reqhits - numhits), 700, 740);
+        g2.drawString("Hits left: " + (reqhits - numhits), 700, 740);
 
-        if (levelup == true){
+        if (levelup == true) {
             g2.setColor(Color.RED);
-            g2.drawRect(375, 405, 100, 50);
-            g2.drawString("Next Level", 390, 435);
+            g2.drawRect(365, 396, 100, 50);
+            g2.drawString("Next Level", 380, 425);
 
-
-            g2.setStroke(new BasicStroke(1));
 
         }
-        if(gameover == true){
+        if (gameover == true) {
             g2.setColor(Color.RED);
-            g2.drawRect(375, 405, 100, 50);
-            g2.drawString("Press to Restart", 375, 390);
+            g2.drawRect(365, 375, 100, 50);
+            g2.drawString("Press to Restart", 365, 360);
 
-            g2.drawString("GAME OVER", 390, 435);
+            g2.drawString("GAME OVER", 380, 405);
         }
-
+        g2.setStroke(new BasicStroke(1));
     }
 
-    public Ball makeRandomBall(){
-//        int x = (int) (Math.random() * getWidth() - 50);
-//        int y = (int) (Math.random() * getHeight() - 50);
-
-        int x= getWidth()/2-25;
-        int y= getHeight()/2-25;
-        int vx = (int) (Math.random() * 21 - 10);
-//        if(vx == 0){
-//            vx = (int) (Math.random() * 21 - 10);
-//        }
-        int vy = (int) (Math.random() * 21 - 10);
-//        if(vy == 0){
-//            vy = (int) (Math.random() * 21 - 10);
-//        }
-        Ball temp = new SmallBalls(x, y);
-        return temp;
     }
-}

@@ -15,15 +15,6 @@ public class Ball  {
         diameter = 50;
         randomColor();
     }
-    public Ball(int x, int y, int vx, int vy, int diam){
-        this.x = x;
-        this.y = y;
-        this.vx = vx;
-        this.vy = vy;
-
-        diameter = diam;
-        randomColor();
-    }
 
 
     public void randomColor(){
@@ -82,13 +73,6 @@ public class Ball  {
 
     public void setVy(int vy) {
         this.vy = vy;
-    }
-
-    public static int getRandFrom(int min, int max){
-
-        int num = max - min + 1;
-        return (int)(Math.random() * num + min);
-
     }
 
     public int getVx() {
