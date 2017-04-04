@@ -45,7 +45,7 @@ public class MyPanel extends JPanel{
                     int y = mouseEvent.getY();
                     newBalls.add(new NewBall(x, y));
                 }
-                if (levelup == true && mouseEvent.getX() > 400 && mouseEvent.getX()< 500 && mouseEvent.getY() > 405 && mouseEvent.getY() < 455 ){
+                if (levelup == true && mouseEvent.getX() > 375 && mouseEvent.getX()< 475 && mouseEvent.getY() > 405 && mouseEvent.getY() < 455 ){
                    timer.start();
                     level++;
                     numhits = 0;
@@ -58,25 +58,21 @@ public class MyPanel extends JPanel{
                     levelup = false;
 
 
+
                 }
-                if(s >= 2 && newBalls.size() == 0) {
-                    gameover = true;
-                }
-                if (gameover == true && mouseEvent.getX() >400 && mouseEvent.getX()< 500 && mouseEvent.getY() > 405 && mouseEvent.getY() < 455 ){
+                if (gameover == true && mouseEvent.getX() >375 && mouseEvent.getX()< 475 && mouseEvent.getY() > 405 && mouseEvent.getY() < 455 ){
                     timer.start();
                     level = 0;
                     numhits = 0;
                     reqhits = 3;
-                    for (int i = 0; i < newBalls.size() ; i++) {
-                        newBalls.remove(i);
-                        i--;
-                    }
                     for (int i = 0; i < level-1; i++) {
-                        newBalls.remove(i);
+                        theBalls.remove(i);
 
                     }
+                    s = 0;
+                    gameover = false;
                 }
-                gameover = false;
+
 
             }
 
@@ -102,10 +98,10 @@ public class MyPanel extends JPanel{
         });
 
         theBalls = new ArrayList<Ball>();
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 10; i++) {
 
 //            theBalls.add(makeRandomBall());
-            theBalls.add(new SmallBalls((int)(Math.random()*850), (int)(Math.random()*850)));
+            theBalls.add(new SmallBalls((int)(Math.random()*800), (int)(Math.random()*800)));
         }
 
         timer = new Timer(30, new ActionListener(){
@@ -148,7 +144,7 @@ public class MyPanel extends JPanel{
                             theBalls.add(new SmallBalls(m, p));
                             if (numhits == reqhits) {
                                 levelup = true;
-                                theBalls.add(new SmallBalls((int)(Math.random()*850), (int)(Math.random()*850)));
+                                theBalls.add(new SmallBalls((int)(Math.random()*800), (int)(Math.random()*800)));
                             }
 
 
@@ -156,7 +152,13 @@ public class MyPanel extends JPanel{
 
 
                     }
+                    if(s >= 1 && newBalls.size() == 0) {
+                        gameover = true;
+                    }
+
                     if(levelup)
+                        timer.stop();
+                    if (gameover)
                         timer.stop();
 
 
@@ -191,27 +193,25 @@ public class MyPanel extends JPanel{
         for(Ball n: newBalls)
             n.draw(g2);
         g2.setColor(Color.RED);
-        g2.drawString("Level: " + level, 10, 12);
+        g2.drawString("Level: " + level, 10, 20);
+        g2.drawString("Target Hits: " + reqhits, 700, 765);
+        g2.drawString("Hits left: " +  (reqhits - numhits), 700, 740);
 
         if (levelup == true){
             g2.setColor(Color.RED);
-            g2.drawRect(400, 405, 100, 50);
-            g2.drawString("Next Level", 415, 435);
-
-            if(gameover == true){
-                g2.setColor(Color.RED);
-                g2.drawString("Level: " + level, 10, 20);
-                g2.drawString("Target Hits: " + reqhits, 750, 790);
-                g2.drawString("Hits left: " +  (reqhits - numhits), 750, 775);
-                g2.drawRect(400, 405, 100, 50);
-                g2.drawString("Press to Restart", 435, 390);
-
-                g2.drawString("GAME OVER", 415, 435);
-            }
+            g2.drawRect(375, 405, 100, 50);
+            g2.drawString("Next Level", 390, 435);
 
 
             g2.setStroke(new BasicStroke(1));
 
+        }
+        if(gameover == true){
+            g2.setColor(Color.RED);
+            g2.drawRect(375, 405, 100, 50);
+            g2.drawString("Press to Restart", 375, 390);
+
+            g2.drawString("GAME OVER", 390, 435);
         }
 
     }
