@@ -45,7 +45,7 @@ public class MyPanel extends JPanel{
                     int y = mouseEvent.getY();
                     newBalls.add(new NewBall(x, y));
                 }
-                if (levelup == true && mouseEvent.getX() >400 && mouseEvent.getX()< 500 && mouseEvent.getY() > 405 && mouseEvent.getY() < 455 ){
+                if (levelup == true && mouseEvent.getX() > 400 && mouseEvent.getX()< 500 && mouseEvent.getY() > 405 && mouseEvent.getY() < 455 ){
                    timer.start();
                     level++;
                     numhits = 0;
@@ -55,7 +55,6 @@ public class MyPanel extends JPanel{
                         i--;
                     }
                     s = 0;
-
                     levelup = false;
 
 
@@ -77,6 +76,7 @@ public class MyPanel extends JPanel{
 
                     }
                 }
+                gameover = false;
 
             }
 
@@ -201,7 +201,7 @@ public class MyPanel extends JPanel{
             if(gameover == true){
                 g2.setColor(Color.RED);
                 g2.drawRect(400, 405, 100, 50);
-                g2.drawString("Press to Restart", 390, 435);
+                g2.drawString("Press to Restart", 435, 390);
 
                 g2.drawString("GAME OVER", 415, 435);
             }
