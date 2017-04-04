@@ -200,6 +200,9 @@ public class MyPanel extends JPanel{
 
             if(gameover == true){
                 g2.setColor(Color.RED);
+                g2.drawString("Level: " + level, 10, 20);
+                g2.drawString("Target Hits: " + reqhits, 750, 790);
+                g2.drawString("Hits left: " +  (reqhits - numhits), 750, 775);
                 g2.drawRect(400, 405, 100, 50);
                 g2.drawString("Press to Restart", 435, 390);
 
