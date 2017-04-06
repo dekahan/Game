@@ -45,7 +45,7 @@ public class MyPanel extends JPanel{
                     int y = mouseEvent.getY();
                     newBalls.add(new NewBall(x, y));
                 }
-                if (levelup == true && mouseEvent.getX() > 365 && mouseEvent.getX()< 465 && mouseEvent.getY() > 375 && mouseEvent.getY() < 425 ){
+                if (levelup == true && mouseEvent.getX() > 345 && mouseEvent.getX() < 465 && mouseEvent.getY() > 365 && mouseEvent.getY() < 405 ){
                    timer.start();
                     level++;
                     numhits = 0;
@@ -60,7 +60,7 @@ public class MyPanel extends JPanel{
 
 
                 }
-                if (gameover == true && mouseEvent.getX() >365 && mouseEvent.getX()< 465 && mouseEvent.getY() > 375 && mouseEvent.getY() < 425 ){
+                if (gameover == true && mouseEvent.getX() > 332 && mouseEvent.getX() < 482 && mouseEvent.getY() > 365 && mouseEvent.getY() < 405 ){
                     timer.start();
                     level = 0;
                     numhits = 0;
@@ -183,22 +183,22 @@ public class MyPanel extends JPanel{
         g2.setColor(Color.RED);
         g2.setFont(new Font("Arial", Font.PLAIN, 20));
 
-        g2.drawString("Level: " + level, 10, 20);
-        g2.drawString((reqhits - numhits) + " more balls...", 700, 760);
+        g2.drawString("Level: " + level, 10, 25);
+        g2.drawString((reqhits - numhits) + " more balls...", 665, 760);
 
         if (levelup == true) {
             g2.setColor(Color.RED);
-            g2.drawRect(365, 396, 100, 50);
-            g2.drawString("Next Level", 380, 425);
+            g2.drawRect(345, 365, 120, 50);
+            g2.drawString("Next Level", 358, 397);
 
 
         }
         if (gameover == true) {
             g2.setColor(Color.RED);
-            g2.drawRect(365, 375, 100, 50);
-            g2.drawString("Press to Restart", 365, 360);
+            g2.drawRect(332, 365, 150, 50);
+            g2.drawString("Press to Restart", 335, 354);
 
-            g2.drawString("GAME OVER", 380, 405);
+            g2.drawString("GAME OVER", 345, 398);
         }
         g2.setStroke(new BasicStroke(1));
     }
