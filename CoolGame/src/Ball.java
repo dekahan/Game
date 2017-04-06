@@ -16,7 +16,6 @@ public class Ball  {
         randomColor();
     }
 
-
     public void randomColor(){
         int r = (int)(Math.random()*256); //[0,255]
         int g = (int)(Math.random()*256); //[0,255]
@@ -99,11 +98,7 @@ public class Ball  {
 
     public boolean intersects(Ball other){
         double d = getPoint().distance(other.getPoint());
-//        int d = ((getX() + getDiameter()/2) - (other.getX() + other.getDiameter()))*((getX() + getDiameter()/2) - (other.getX() + other.getDiameter())) + ((getY() + getDiameter()/2) - (other.getY() + other.getDiameter()))*((getY() + getDiameter()/2) - (other.getY() + other.getDiameter()));
-        if (d < (diameter/2 + other.getDiameter()/2))
-            return true;
-        else
-            return false;
+        return d < (diameter / 2 + other.getDiameter() / 2);
 
 
     }

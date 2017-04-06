@@ -14,7 +14,6 @@ public class NewBall extends Ball {
 
     @Override
     public void move(int w, int h) {
-        //super.move(w, h);
         frameCount ++;
         if (frameCount < 100) {
             setDiameter(getDiameter() + 1);
@@ -28,9 +27,6 @@ public class NewBall extends Ball {
         }
         if (frameCount >= 150)
             setDiameter(0);
-
-
-
 
 
     }

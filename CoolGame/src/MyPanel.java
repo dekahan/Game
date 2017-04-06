@@ -175,15 +175,16 @@ public class MyPanel extends JPanel{
         Graphics2D g2 = (Graphics2D) g;
         g2.fillRect(0, 0, getWidth(), getHeight());
         g2.setStroke(new BasicStroke(3));
-
+//
         for (Ball b : theBalls)
             b.draw(g2);
         for (Ball n : newBalls)
             n.draw(g2);
         g2.setColor(Color.RED);
+        g2.setFont(new Font("Arial", Font.PLAIN, 20));
+
         g2.drawString("Level: " + level, 10, 20);
-        g2.drawString("Target Hits: " + reqhits, 700, 765);
-        g2.drawString("Hits left: " + (reqhits - numhits), 700, 740);
+        g2.drawString((reqhits - numhits) + " more balls...", 700, 760);
 
         if (levelup == true) {
             g2.setColor(Color.RED);
@@ -202,4 +203,4 @@ public class MyPanel extends JPanel{
         g2.setStroke(new BasicStroke(1));
     }
 
-    }
+}
