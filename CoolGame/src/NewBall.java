@@ -20,14 +20,10 @@ public class NewBall extends Ball {
             setX(getX() - 0.5);
             setY(getY() - 0.5);
         }
-
-
         if (frameCount >= 100 && frameCount < 150 ) {
             setDiameter(getDiameter());
         }
         if (frameCount >= 150)
             setDiameter(0);
-
-
     }
 }

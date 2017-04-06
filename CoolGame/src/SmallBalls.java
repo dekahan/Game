@@ -1,12 +1,9 @@
-import java.awt.*;
-import java.util.ArrayList;
-
 public class SmallBalls extends Ball{
     public boolean novelocity;
 
     public SmallBalls(int x, int y){
         super(x, y, (int)(Math.random()*22-10), (int)(Math.random()*22-10));
-        setDiameter(10);
+        setDiameter(11);
         if(getVx() == 0 || getVy() == 0){
             novelocity = true;
         }
@@ -18,5 +15,4 @@ public class SmallBalls extends Ball{
         else
             novelocity = false;
     }
-
 }

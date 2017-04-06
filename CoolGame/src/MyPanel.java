@@ -1,7 +1,4 @@
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicBorders;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,10 +27,7 @@ public class MyPanel extends JPanel{
         numhits = 0;
         s = 0;
 
-
         newBalls = new ArrayList<Ball>();
-
-
         this.addMouseListener(new MouseListener() {
 
             @Override
@@ -56,13 +50,11 @@ public class MyPanel extends JPanel{
                     }
                     s = 0;
                     levelup = false;
-
-
-
                 }
+
                 if (gameover == true && mouseEvent.getX() > 332 && mouseEvent.getX() < 482 && mouseEvent.getY() > 365 && mouseEvent.getY() < 405 ){
                     timer.start();
-                    level = 0;
+                    level = 1;
                     numhits = 0;
                     reqhits = 3;
                     for (int i = 0; i < level-1; i++) {
@@ -72,8 +64,6 @@ public class MyPanel extends JPanel{
                     s = 0;
                     gameover = false;
                 }
-
-
             }
 
             @Override
@@ -103,7 +93,6 @@ public class MyPanel extends JPanel{
 //            theBalls.add(makeRandomBall());
             theBalls.add(new SmallBalls((int)(Math.random()*800), (int)(Math.random()*800)));
         }
-
         timer = new Timer(30, new ActionListener(){
 
 
@@ -144,13 +133,8 @@ public class MyPanel extends JPanel{
                             theBalls.add(new SmallBalls(m, p));
                             if (numhits == reqhits) {
                                 levelup = true;
-//                                theBalls.add(new SmallBalls((int)(Math.random()*800), (int)(Math.random()*800)));
                             }
-
-
                         }
-
-
                     }
                     if(s >= 1 && newBalls.size() == 0) {
                         gameover = true;
@@ -164,18 +148,18 @@ public class MyPanel extends JPanel{
 
                     repaint();
                 }
-//
             }
 
         });
         timer.start();
     }
     public void paint(Graphics g) {
-        super.paint(g);  //gets rid of that trail effect.
+        super.paint(g);
         Graphics2D g2 = (Graphics2D) g;
+        g2.setColor(new Color(44, 44, 47));
         g2.fillRect(0, 0, getWidth(), getHeight());
         g2.setStroke(new BasicStroke(3));
-//
+
         for (Ball b : theBalls)
             b.draw(g2);
         for (Ball n : newBalls)
@@ -184,23 +168,20 @@ public class MyPanel extends JPanel{
         g2.setFont(new Font("Arial", Font.PLAIN, 20));
 
         g2.drawString("Level: " + level, 10, 25);
-        g2.drawString((reqhits - numhits) + " more balls...", 665, 760);
+        g2.drawString((reqhits - numhits) + " more balls...", 665, 763);
 
         if (levelup == true) {
             g2.setColor(Color.RED);
             g2.drawRect(345, 365, 120, 50);
             g2.drawString("Next Level", 358, 397);
-
-
         }
+
         if (gameover == true) {
             g2.setColor(Color.RED);
             g2.drawRect(332, 365, 150, 50);
             g2.drawString("Press to Restart", 335, 354);
-
             g2.drawString("GAME OVER", 345, 398);
         }
         g2.setStroke(new BasicStroke(1));
     }
-
 }

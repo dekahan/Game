@@ -17,9 +17,9 @@ public class Ball  {
     }
 
     public void randomColor(){
-        int r = (int)(Math.random()*256); //[0,255]
-        int g = (int)(Math.random()*256); //[0,255]
-        int b = (int)(Math.random()*256); //[0,255]
+        int r = (int)(Math.random()*256);
+        int g = (int)(Math.random()*256);
+        int b = (int)(Math.random()*256);
         color = new Color(r, g, b);
     }
 
@@ -30,22 +30,22 @@ public class Ball  {
 
     public void move(int w, int h){
 
-        if( x <= 0 ) {  //left side bounce
+        if( x <= 0 ) {
             vx = -vx;
             x = 0;
             randomColor();
         }
-        if( y <= 0) {  //top side bounce
+        if( y <= 0) {
             vy = -vy;
             y = 0;
             randomColor();
         }
-        if( x + diameter >= w) {  //right side bounce
+        if( x + diameter >= w) {
             vx = -vx;
             x = w - diameter;
             randomColor();
         }
-        if( y + diameter >= h) {   //bottom side bounce
+        if( y + diameter >= h) {
             vy = -vy;
             y = h - diameter;
             randomColor();
